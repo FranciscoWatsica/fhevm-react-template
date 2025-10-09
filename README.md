@@ -1,170 +1,336 @@
-# FHEVM React Template
+# Privacy Pet DNA Matching System
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+A revolutionary blockchain-based platform for privacy-preserving pet breeding compatibility matching. This system enables pet owners to find optimal breeding partners while keeping sensitive genetic information completely private and encrypted.
 
-## 🚀 What is FHEVM?
+---
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+## 🎯 Core Concept
+
+**Privacy Pet DNA Matching** - A pet breeding compatibility system that matches the best breeding partners **without revealing specific genetic information**, preventing hereditary diseases through encrypted genetic analysis.
+
+Traditional pet breeding platforms expose sensitive genetic data, creating privacy risks and potential discrimination. Our system uses Fully Homomorphic Encryption (FHE) to perform complex genetic compatibility calculations on encrypted data, ensuring that:
+
+- ✅ Pet genetic markers remain encrypted on-chain
+- ✅ Health scores and temperament data stay private
+- ✅ Compatibility matching happens without data exposure
+- ✅ Only final match results are revealed to owners
+- ✅ Hereditary disease risks are minimized through smart matching
+
+---
+
+## 🔬 How It Works
+
+### 1. **Encrypted Pet Registration**
+Pet owners register their pets with sensitive data that gets encrypted before being stored on the blockchain:
+- Genetic markers (3 unique DNA identifiers)
+- Health score (0-100 rating)
+- Temperament score (behavioral compatibility)
+- Basic public info (name, breed, age)
+
+All sensitive data is encrypted using Zama's fhEVM technology and never exposed in plain text.
+
+### 2. **Privacy-Preserving Matching**
+When requesting a compatibility match between two pets:
+- Both pets' encrypted genetic data is processed on-chain
+- Homomorphic operations calculate compatibility scores
+- Health compatibility, temperament matching, and genetic diversity are analyzed
+- All computations happen on encrypted data without decryption
+
+### 3. **Secure Results**
+After encrypted computation:
+- Only the final compatibility score (0-100) is revealed
+- Match threshold of 70%+ indicates good breeding compatibility
+- Original genetic data remains permanently encrypted
+- Pet owners can make informed decisions without exposing private information
+
+---
+
+## 🚀 Live Demo
+
+**Try it now:** [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
+
+**Video Demonstration:** `demo.mp4` included in the repository (GitHub doesn't support direct video playback - please download to view the full demonstration)
+
+**GitHub Repository:** [https://github.com/FranciscoWatsica/PetDNAMatching](https://github.com/FranciscoWatsica/PetDNAMatching)
+
+---
+
+## 🛠️ Technology Stack
+
+- **Blockchain**: Ethereum Sepolia Testnet
+- **Privacy Layer**: Zama fhEVM (Fully Homomorphic Encryption)
+- **Smart Contract**: Solidity ^0.8.24 with SepoliaConfig
+- **Frontend**: HTML5, JavaScript, Ethers.js v5
+- **Wallet**: MetaMask integration
+- **Encrypted Types**: euint8, euint16 for secure data handling
+
+---
 
 ## ✨ Features
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+### For Pet Owners
+- 🔐 **Complete Privacy**: Genetic data never leaves encryption
+- 🧬 **DNA Compatibility**: Analyze genetic marker compatibility
+- 💚 **Health Matching**: Ensure both pets meet health standards
+- 😺 **Temperament Analysis**: Match behavioral compatibility
+- 📊 **Compatibility Scores**: Clear 0-100% match ratings
+- 🔄 **Breeding Control**: Enable/disable breeding availability
+- 📜 **Match History**: View all past compatibility checks
 
-## 📋 Prerequinextjss
+### For the Ecosystem
+- 🏥 **Disease Prevention**: Reduce hereditary disease transmission
+- 🎯 **Quality Breeding**: Promote healthy breeding practices
+- 🌐 **Transparent System**: All operations verifiable on-chain
+- 🔓 **Open Platform**: Decentralized, censorship-resistant
+- 💡 **Educational**: Learn about genetic compatibility
 
-Before you begin, ensure you have:
+---
 
-- **Node.js** (v18 or higher)
-- **pnpm** package manager
-- **MetaMask** browser extension
-- **Git** for cloning the repository
+## 📖 Getting Started
 
-## 🛠️ Quick Start
+### Prerequisites
+- MetaMask wallet installed
+- Sepolia testnet ETH (for gas fees)
+- Modern web browser (Chrome, Firefox, Brave)
 
-### 1. Clone and Setup
+### Using the Platform
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd fhevm-react-template
+1. **Connect Wallet**
+   - Click "Connect Wallet" button
+   - Approve MetaMask connection
+   - Switch to Sepolia testnet if prompted
 
-# Initialize submodules (includes fhevm-hardhat-template)
-git submodule update --init --recursive
+2. **Register Your Pet**
+   - Enter pet's basic information (name, breed, age)
+   - Input health risk assessment (0-100)
+   - Provide genetic markers (4 unique identifiers)
+   - Submit transaction and wait for confirmation
 
-# Install dependencies
-pnpm install
+3. **Create Matching Profile**
+   - Set minimum health score requirements
+   - Define temperament preferences
+   - Specify maximum age for breeding partner
+   - Save profile to smart contract
+
+4. **Request Compatibility Match**
+   - Select your pet (Pet ID 1)
+   - Choose potential breeding partner (Pet ID 2)
+   - Pay 0.001 ETH matching fee
+   - Wait for encrypted computation to complete
+
+5. **View Results**
+   - Check compatibility score (0-100%)
+   - Scores above 70% indicate good matches
+   - Review all past matches in match history
+   - Make informed breeding decisions
+
+---
+
+## 🏗️ Smart Contract Architecture
+
+### Core Contract: PetDNAMatching
+
+```solidity
+contract PetDNAMatching is SepoliaConfig {
+    struct Pet {
+        uint256 id;
+        address owner;
+        string name;
+        string species;
+        string breed;
+        uint256 birthYear;
+        euint8 healthScore;          // Encrypted
+        euint16 geneticMarker1;      // Encrypted
+        euint16 geneticMarker2;      // Encrypted
+        euint16 geneticMarker3;      // Encrypted
+        euint8 temperament;          // Encrypted
+        bool availableForBreeding;
+    }
+
+    struct MatchResult {
+        uint256 requestId;
+        uint256 petId1;
+        uint256 petId2;
+        uint8 compatibilityScore;    // Revealed result
+        bool isMatched;              // Score >= 70%
+        uint256 matchTime;
+    }
+}
 ```
 
-### 2. Environment Configuration
+### Key Functions
 
-Set up your Hardhat environment variables by following the [FHEVM documentation](https://docs.zama.ai/protocol/solidity-guides/getting-started/setup#set-up-the-hardhat-configuration-variables-optional):
+- `registerPet()`: Encrypt and store pet's genetic data
+- `createMatchingProfile()`: Set encrypted breeding preferences
+- `requestMatching()`: Initiate compatibility analysis (payable)
+- `processMatchingResult()`: Gateway callback for results
+- `getPetInfo()`: Retrieve non-sensitive pet information
+- `getPetMatches()`: View match history
 
-- `MNEMONIC`: Your wallet mnemonic phrase
-- `INFURA_API_KEY`: Your Infura API key for Sepolia
+---
 
-### 3. Start Development Environment
+## 🔐 Privacy Features
 
-**Option A: Local Development (Recommended for testing)**
+### Data Encryption
+All sensitive pet data is encrypted using Zama's fhEVM:
 
-```bash
-# Terminal 1: Start local Hardhat node
-pnpm chain
-# RPC URL: http://127.0.0.1:8545 | Chain ID: 31337
+```javascript
+// Frontend encryption example
+const healthScore = 85; // Private health score
+const marker1 = 12345;  // Private genetic marker
 
-# Terminal 2: Deploy contracts to localhost
-pnpm deploy:localhost
-
-# Terminal 3: Start the frontend
-pnpm start
+// Encrypted on-chain storage
+euint8 encryptedHealth = FHE.asEuint8(healthScore);
+euint16 encryptedMarker = FHE.asEuint16(marker1);
 ```
 
-**Option B: Sepolia Testnet**
+### Encrypted Operations
+Compatibility calculations use homomorphic operations:
 
-```bash
-# Deploy to Sepolia testnet
-pnpm deploy:sepolia
+```solidity
+// Calculate health compatibility (encrypted)
+euint8 healthSum = FHE.add(pet1.healthScore, pet2.healthScore);
 
-# Start the frontend
-pnpm start
+// Calculate temperament difference (encrypted)
+euint8 temperamentDiff = FHE.sub(pet1.temperament, pet2.temperament);
+
+// Request decryption only for final result
+FHE.requestDecryption([healthSum, temperamentDiff], callback);
 ```
 
-### 4. Connect MetaMask
+### Access Control
+- Pet owners can only access their own encrypted data
+- Contract has computation permissions only
+- No third party can decrypt genetic information
+- Gateway API v2.0+ ensures secure decryption
 
-1. Open [http://localhost:3000](http://localhost:3000) in your browser
-2. Click "Connect Wallet" and select MetaMask
-3. If using localhost, add the Hardhat network to MetaMask:
-   - **Network Name**: Hardhat Local
-   - **RPC URL**: `http://127.0.0.1:8545`
-   - **Chain ID**: `31337`
-   - **Currency Symbol**: `ETH`
+---
 
-### ⚠️ Sepolia Production note
+## 🧮 Compatibility Scoring Algorithm
 
-- In production, `NEXT_PUBLIC_ALCHEMY_API_KEY` must be set (see `packages/nextjs/scaffold.config.ts`). The app throws if missing.
-- Ensure `packages/nextjs/contracts/deployedContracts.ts` points to your live contract addresses.
-- Optional: set `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` for better WalletConnect reliability.
-- Optional: add per-chain RPCs via `rpcOverrides` in `packages/nextjs/scaffold.config.ts`.
+The system calculates compatibility using three factors:
 
-## 🔧 Troubleshooting
+### 1. Health Compatibility (50 points max)
+- Both pets' health scores combined
+- Higher combined score = better compatibility
+- ≥160: 50 points | ≥140: 40 points | ≥120: 30 points
 
-### Common MetaMask + Hardhat Issues
+### 2. Temperament Compatibility (30 points max)
+- Difference between temperament scores
+- Lower difference = better compatibility
+- ≤2: 30 points | ≤4: 20 points | >4: 10 points
 
-When developing with MetaMask and Hardhat, you may encounter these common issues:
+### 3. Genetic Diversity (20 points base)
+- Ensures breeding variation
+- Prevents inbreeding risks
 
-#### ❌ Nonce Mismatch Error
+**Total Score**: 0-100 points
+**Match Threshold**: ≥70 points indicates good breeding compatibility
 
-**Problem**: MetaMask tracks transaction nonces, but when you restart Hardhat, the node resets while MetaMask doesn't update its tracking.
+---
 
-**Solution**:
-1. Open MetaMask extension
-2. Select the Hardhat network
-3. Go to **Settings** → **Advanced**
-4. Click **"Clear Activity Tab"** (red button)
-5. This resets MetaMask's nonce tracking
+## 📡 Deployed Contract
 
-#### ❌ Cached View Function Results
+- **Network**: Ethereum Sepolia Testnet
+- **Contract Address**: `0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1`
+- **Chain ID**: 11155111
+- **Gateway API**: v2.0+ Compatible
+- **Etherscan**: [View Contract](https://sepolia.etherscan.io/address/0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1)
+- **Matching Cost**: 0.001 ETH
 
-**Problem**: MetaMask caches smart contract view function results. After restarting Hardhat, you may see outdated data.
+---
 
-**Solution**:
-1. **Restart your entire browser** (not just refresh the page)
-2. MetaMask's cache is stored in extension memory and requires a full browser restart to clear
+## ⚙️ Configuration
 
-> 💡 **Pro Tip**: Always restart your browser after restarting Hardhat to avoid cache issues.
-
-For more details, see the [MetaMask development guide](https://docs.metamask.io/wallet/how-to/run-devnet/).
-
-## 📁 Project Structure
-
-This template uses a monorepo structure with three main packages:
-
-```
-fhevm-react-template/
-├── packages/
-│   ├── fhevm-hardhat-template/    # Smart contracts & deployment
-│   ├── fhevm-sdk/                 # FHEVM SDK package
-│   └── nextjs/                      # React frontend application
-└── scripts/                       # Build and deployment scripts
+### Network Details
+```javascript
+const SEPOLIA_CONFIG = {
+  chainId: 11155111,
+  rpcUrl: 'https://sepolia.infura.io/v3/YOUR_KEY',
+  contractAddress: '0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1',
+  gatewayUrl: 'https://gateway.zama.ai'
+};
 ```
 
-### Key Components
+### MetaMask Setup
+1. Add Sepolia testnet to MetaMask
+2. Get testnet ETH from [Sepolia Faucet](https://sepoliafaucet.com/)
+3. Connect to the dApp
+4. Approve transactions
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
-- Essential hooks for FHEVM-enabled smart contract communication
-- Easily copyable to any FHEVM + React project
+---
 
-#### 🎣 Wallet Management (`packages/nextjs/hooks/helper/`)
-- MetaMask wallet provider hooks
-- Compatible with EIP-6963 standard
-- Easily adaptable for other wallet providers
+## 🎬 Video Demonstration
 
-#### 🔧 Flexibility
-- Replace `ethers.js` with `Wagmi` or other React-friendly libraries
-- Modular architecture for easy customization
-- Support for multiple wallet providers
+A complete demonstration video (`demo.mp4`) is included in this repository showing:
+- Pet registration with encrypted genetic data
+- Creating matching profiles
+- Requesting compatibility matches
+- Viewing encrypted data on-chain
+- Receiving match results
 
-## 📚 Additional Resources
+**Note**: GitHub doesn't support direct video playback in the browser. Please download `demo.mp4` to view the full demonstration.
 
-### Official Documentation
-- [FHEVM Documentation](https://docs.zama.ai/protocol/solidity-guides/) - Complete FHEVM guide
-- [FHEVM Hardhat Guide](https://docs.zama.ai/protocol/solidity-guides/development-guide/hardhat) - Hardhat integration
-- [Relayer SDK Documentation](https://docs.zama.ai/protocol/relayer-sdk-guides/) - SDK reference
-- [Environment Setup](https://docs.zama.ai/protocol/solidity-guides/getting-started/setup#set-up-the-hardhat-configuration-variables-optional) - MNEMONIC & API keys
+---
 
-### Development Tools
-- [MetaMask + Hardhat Setup](https://docs.metamask.io/wallet/how-to/run-devnet/) - Local development
-- [React Documentation](https://reactjs.org/) - React framework guide
+## 🛡️ Security Considerations
 
-### Community & Support
-- [FHEVM Discord](https://discord.com/invite/zama) - Community support
-- [GitHub Issues](https://github.com/zama-ai/fhevm-react-template/issues) - Bug reports & feature requests
+### Encryption
+- All genetic data encrypted with Zama fhEVM
+- Private keys never leave user's wallet
+- Homomorphic operations preserve privacy
+
+### Smart Contract Security
+- Owner-only administrative functions
+- Pet owner verification for modifications
+- Reentrancy protection on payable functions
+- Secure random number generation
+
+### Data Privacy
+- No plain-text genetic data stored
+- Computation results only revealed when needed
+- Access control enforced at contract level
+- Gateway API validates all decryption requests
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to improve privacy-preserving pet breeding! Please feel free to:
+- Report bugs or issues
+- Suggest new features
+- Submit pull requests
+- Improve documentation
+
+---
+
+## 🌟 Future Roadmap
+
+- [ ] Multi-species support (cats, birds, reptiles)
+- [ ] Advanced genetic marker analysis
+- [ ] Breeding certificate NFTs
+- [ ] Veterinarian verification system
+- [ ] Mobile app integration
+- [ ] Mainnet deployment
+- [ ] DAO governance for platform decisions
+
+---
 
 ## 📄 License
 
-This project is licensed under the **BSD-3-Clause-Clear License**. See the [LICENSE](LICENSE) file for details.
+MIT License - Feel free to use this project for your own applications
+
+---
+
+## 🙏 Acknowledgments
+
+- **Zama** for fhEVM technology and privacy infrastructure
+- **Ethereum Foundation** for Sepolia testnet
+- **MetaMask** for wallet integration
+- The blockchain and privacy community
+
+---
+
+**Protecting Pet Genetics, One Encrypted Match at a Time** 🐾🔐
+
+For questions, suggestions, or collaboration opportunities, please open an issue on GitHub or contact the development team.
