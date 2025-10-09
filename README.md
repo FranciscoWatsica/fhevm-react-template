@@ -27,10 +27,10 @@ The **Universal FHEVM SDK** (`@fhevm-pet-dna/sdk`) is a comprehensive developmen
 - **📦 SDK Package**: [`packages/fhevm-sdk/`](./packages/fhevm-sdk/)
 - **📚 SDK Documentation**: [SDK README](./packages/fhevm-sdk/README.md)
 - **📖 Technical Docs**: [SDK_DOCUMENTATION.md](./SDK_DOCUMENTATION.md)
-- **🎥 Video Demo**: [VIDEO_SCRIPT.md](./VIDEO_SCRIPT.md)
+- **🎥 Video Demo**: demo1.mp4 demo2.mp4 demo3.mp4
 - **🏅 Bounty Submission**: [BOUNTY_SUBMISSION.md](./BOUNTY_SUBMISSION.md)
 - **🌐 Live Demo**: [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
-- **📜 GitHub Repo**: [https://github.com/FranciscoWatsica/PetDNAMatching](https://github.com/FranciscoWatsica/PetDNAMatching)
+- **📜 GitHub Repo**: [https://github.com/FranciscoWatsica/fhevm-react-template](https://github.com/FranciscoWatsica/fhevm-react-template)
 - **📝 Smart Contract**: [0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1](https://sepolia.etherscan.io/address/0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1) (Verified on Sepolia)
 
 ---
@@ -83,8 +83,8 @@ fhevm-react-template/
 ├── SDK_DOCUMENTATION.md        # Technical deep-dive
 ├── BOUNTY_SUBMISSION.md        # Formal submission document
 ├── SETUP.md                    # Installation & deployment guide
-├── VIDEO_SCRIPT.md             # 3-minute video script
-├── VIDEO_SUBTITLES.txt         # Pure text subtitles
+├
+├
 └── package.json                # Root workspace config
 ```
 
@@ -102,7 +102,7 @@ fhevm-react-template/
 
 ```bash
 # Clone the repository
-git clone https://github.com/FranciscoWatsica/PetDNAMatching.git
+git clone https://github.com/FranciscoWatsica/fhevm-react-template.git
 cd fhevm-react-template
 
 # Install all dependencies (root, SDK, contracts, examples)
@@ -353,10 +353,7 @@ All React hooks have Vue 3 equivalents using the Composition API:
 
 ### Video Demonstration
 
-- **[VIDEO_SCRIPT.md](./VIDEO_SCRIPT.md)**: 3-minute video recording script
-- **[VIDEO_SUBTITLES.txt](./VIDEO_SUBTITLES.txt)**: Pure text subtitles for easy copying
-
----
+demo1.mp4 demo2.mp4 demo3.mp4
 
 ## 🎮 Example Use Case: Privacy Pet DNA Matching
 
@@ -529,7 +526,7 @@ A 3-minute video demonstration is available showing:
 - Pet DNA matching use case
 - Live deployment walkthrough
 
-See [VIDEO_SCRIPT.md](./VIDEO_SCRIPT.md) for the complete script.
+demo1.mp4 demo2.mp4 demo3.mp4
 
 ---
 
@@ -574,7 +571,7 @@ MIT License - Free to use and extend
 ## 📞 Links & Resources
 
 - **Live Demo**: [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
-- **GitHub Repository**: [https://github.com/FranciscoWatsica/PetDNAMatching](https://github.com/FranciscoWatsica/PetDNAMatching)
+- **GitHub Repository**: [https://github.com/FranciscoWatsica/fhevm-react-template](https://github.com/FranciscoWatsica/fhevm-react-template)
 - **Smart Contract**: [0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1](https://sepolia.etherscan.io/address/0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1)
 - **Zama Docs**: [https://docs.zama.ai/fhevm](https://docs.zama.ai/fhevm)
 - **SDK Documentation**: [packages/fhevm-sdk/README.md](./packages/fhevm-sdk/README.md)
