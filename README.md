@@ -29,7 +29,7 @@ The **Universal FHEVM SDK** (`@fhevm-pet-dna/sdk`) is a comprehensive developmen
 - **📖 Technical Docs**: [SDK_DOCUMENTATION.md](./SDK_DOCUMENTATION.md)
 - **🎥 Video Demo**: demo1.mp4 demo2.mp4 demo3.mp4
 - **🏅 Bounty Submission**: [BOUNTY_SUBMISSION.md](./BOUNTY_SUBMISSION.md)
-- **🌐 Live Demo**: [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
+- **🌐 Live Demo**: [https://franciscowatsica.github.io/FHEPetDNAMatching/](https://franciscowatsica.github.io/FHEPetDNAMatching/)
 - **📜 GitHub Repo**: [https://github.com/FranciscoWatsica/fhevm-react-template](https://github.com/FranciscoWatsica/fhevm-react-template)
 - **📝 Smart Contract**: [0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1](https://sepolia.etherscan.io/address/0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1) (Verified on Sepolia)
 
@@ -368,7 +368,7 @@ The included Next.js example demonstrates a real-world use case: **privacy-prese
 
 ### Live Demo
 
-Try the live demo at: **[https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)**
+Try the live demo at: **[https://franciscowatsica.github.io/FHEPetDNAMatching/](https://franciscowatsica.github.io/FHEPetDNAMatching/)**
 
 1. Connect MetaMask (Sepolia testnet)
 2. Register a pet with encrypted genetic data
@@ -570,7 +570,7 @@ MIT License - Free to use and extend
 
 ## 📞 Links & Resources
 
-- **Live Demo**: [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
+- **Live Demo**: [https://franciscowatsica.github.io/FHEPetDNAMatching/](https://franciscowatsica.github.io/FHEPetDNAMatching/)
 - **GitHub Repository**: [https://github.com/FranciscoWatsica/fhevm-react-template](https://github.com/FranciscoWatsica/fhevm-react-template)
 - **Smart Contract**: [0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1](https://sepolia.etherscan.io/address/0xC16ebe7Cb0A3B057437B8A3568d6Df2FB02812d1)
 - **Zama Docs**: [https://docs.zama.ai/fhevm](https://docs.zama.ai/fhevm)
