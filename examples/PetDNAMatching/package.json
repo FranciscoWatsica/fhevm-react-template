@@ -1,0 +1,47 @@
+{
+  "name": "fhevm-pet-dna-sdk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Universal FHEVM SDK for building privacy-preserving applications - Pet DNA Matching example",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "compile": "turbo run compile",
+    "deploy": "turbo run deploy",
+    "dev:nextjs": "npm run dev --workspace=@fhevm-pet-dna/nextjs-example",
+    "build:sdk": "npm run build --workspace=@fhevm-pet-dna/sdk",
+    "build:contracts": "npm run build --workspace=@fhevm-pet-dna/contracts"
+  },
+  "keywords": [
+    "fhevm",
+    "fhe",
+    "zama",
+    "privacy",
+    "encryption",
+    "sdk",
+    "web3",
+    "blockchain",
+    "ethereum"
+  ],
+  "author": "FHEVM Pet DNA SDK Team",
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/fhevm-pet-dna-sdk"
+  }
+}
