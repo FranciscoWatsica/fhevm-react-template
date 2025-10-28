@@ -47,11 +47,11 @@ After encrypted computation:
 
 ## 🚀 Live Demo
 
-**Try it now:** [https://franciscowatsica.github.io/PetDNAMatching/](https://franciscowatsica.github.io/PetDNAMatching/)
+**Try it now:** [https://franciscowatsica.github.io/FHEPetDNAMatching/](https://franciscowatsica.github.io/FHEPetDNAMatching/)
 
 **Video Demonstration:** `demo.mp4` included in the repository (GitHub doesn't support direct video playback - please download to view the full demonstration)
 
-**GitHub Repository:** [https://github.com/FranciscoWatsica/PetDNAMatching](https://github.com/FranciscoWatsica/PetDNAMatching)
+ 
 
 ---
 
