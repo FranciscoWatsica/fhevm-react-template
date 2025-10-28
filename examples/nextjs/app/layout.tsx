@@ -1,19 +1,20 @@
-import type { Metadata } from 'next'
-import './globals.css'
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Privacy Pet DNA Matching',
-  description: 'Privacy-preserving pet breeding compatibility matching system',
-}
+import './globals.css';
+import { FHEProvider } from '../components/fhe/FHEProvider';
 
 export default function RootLayout({
   children,
 }: {
-  children: React.Node
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <FHEProvider>
+          {children}
+        </FHEProvider>
+      </body>
     </html>
   )
 }
