@@ -74,48 +74,70 @@ fhevm-react-template/
 │   └── README.md               # Templates documentation
 │
 ├── examples/
-│   └── nextjs/                 # Next.js example (demonstrates SDK)
-│       ├── app/
-│       │   ├── page.tsx        # Main demo page
-│       │   ├── layout.tsx      # Root layout with FHEProvider
-│       │   ├── globals.css     # Global styles
-│       │   └── api/            # API routes
-│       │       ├── fhe/
-│       │       │   ├── route.ts
-│       │       │   ├── encrypt/route.ts
-│       │       │   ├── decrypt/route.ts
-│       │       │   └── compute/route.ts
-│       │       └── keys/route.ts
-│       ├── components/
-│       │   ├── ui/             # Base UI components
-│       │   │   ├── Button.tsx
-│       │   │   ├── Input.tsx
-│       │   │   └── Card.tsx
-│       │   ├── fhe/            # FHE components
-│       │   │   ├── FHEProvider.tsx
-│       │   │   ├── EncryptionDemo.tsx
-│       │   │   ├── ComputationDemo.tsx
-│       │   │   └── KeyManager.tsx
-│       │   └── examples/       # Example use cases
-│       │       ├── BankingExample.tsx
-│       │       └── MedicalExample.tsx
-│       ├── lib/
-│       │   ├── fhe/            # FHE utilities
-│       │   │   ├── client.ts
-│       │   │   ├── server.ts
-│       │   │   ├── keys.ts
-│       │   │   └── types.ts
-│       │   └── utils/          # Helper utilities
-│       │       ├── security.ts
-│       │       └── validation.ts
-│       ├── hooks/              # Custom React hooks
-│       │   ├── useFHE.ts
-│       │   ├── useEncryption.ts
-│       │   └── useComputation.ts
-│       ├── types/              # TypeScript types
-│       │   ├── fhe.ts
-│       │   └── api.ts
-│       └── package.json
+│   ├── nextjs/                 # Next.js example (demonstrates SDK)
+│   │   ├── app/
+│   │   │   ├── page.tsx        # Main demo page
+│   │   │   ├── layout.tsx      # Root layout with FHEProvider
+│   │   │   ├── globals.css     # Global styles
+│   │   │   └── api/            # API routes
+│   │   │       ├── fhe/
+│   │   │       │   ├── route.ts
+│   │   │       │   ├── encrypt/route.ts
+│   │   │       │   ├── decrypt/route.ts
+│   │   │       │   └── compute/route.ts
+│   │   │       └── keys/route.ts
+│   │   ├── components/
+│   │   │   ├── ui/             # Base UI components
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   └── Card.tsx
+│   │   │   ├── fhe/            # FHE components
+│   │   │   │   ├── FHEProvider.tsx
+│   │   │   │   ├── EncryptionDemo.tsx
+│   │   │   │   ├── ComputationDemo.tsx
+│   │   │   │   └── KeyManager.tsx
+│   │   │   └── examples/       # Example use cases
+│   │   │       ├── BankingExample.tsx
+│   │   │       └── MedicalExample.tsx
+│   │   ├── lib/
+│   │   │   ├── fhe/            # FHE utilities
+│   │   │   │   ├── client.ts
+│   │   │   │   ├── server.ts
+│   │   │   │   ├── keys.ts
+│   │   │   │   └── types.ts
+│   │   │   └── utils/          # Helper utilities
+│   │   │       ├── security.ts
+│   │   │       └── validation.ts
+│   │   ├── hooks/              # Custom React hooks
+│   │   │   ├── useFHE.ts
+│   │   │   ├── useEncryption.ts
+│   │   │   └── useComputation.ts
+│   │   ├── types/              # TypeScript types
+│   │   │   ├── fhe.ts
+│   │   │   └── api.ts
+│   │   └── package.json
+│   │
+│   ├── PetDNAMatchingReact/    # React + Vite Pet DNA Matching example
+│   │   ├── src/
+│   │   │   ├── components/     # React components
+│   │   │   │   ├── WalletConnection.jsx
+│   │   │   │   ├── PetRegistration.jsx
+│   │   │   │   ├── MyPets.jsx
+│   │   │   │   ├── MatchingService.jsx
+│   │   │   │   └── ContractInfo.jsx
+│   │   │   ├── hooks/          # Custom hooks
+│   │   │   │   └── useWallet.js
+│   │   │   ├── utils/          # SDK integration
+│   │   │   │   └── fhevm.js
+│   │   │   ├── App.jsx
+│   │   │   ├── App.css
+│   │   │   └── main.jsx
+│   │   ├── index.html
+│   │   ├── vite.config.js
+│   │   └── package.json
+│   │
+│   └── PetDNAMatching/         # Vanilla JS/HTML example
+│       └── index.html          # Standalone HTML with SDK
 │
 ├── docs/                       # Documentation
 │   └── README.md               # Documentation index
@@ -271,6 +293,60 @@ const encrypted = await client.encrypt({
 console.log('Encrypted:', encrypted.data);
 console.log('Signature:', encrypted.signature);
 ```
+
+### Vanilla HTML/JavaScript (Browser)
+
+For standalone HTML applications without build tools, the SDK is available via a simplified wrapper class:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fhevmjs@0.5.0/dist/fhevm-web.js"></script>
+</head>
+<body>
+    <script>
+        // SDK wrapper class (included in examples/index.html)
+        class SimpleFHEVMClient {
+            constructor(provider, signer, chainId) {
+                this.provider = provider;
+                this.signer = signer;
+                this.chainId = chainId;
+            }
+
+            async initialize() {
+                this.instance = await window.fhevmjs.createInstance({
+                    chainId: this.chainId,
+                });
+                return this.instance;
+            }
+
+            async encrypt(value, type, contractAddress) {
+                const userAddress = await this.signer.getAddress();
+                const input = this.instance.createEncryptedInput(contractAddress, userAddress);
+
+                if (type === 'euint8') input.add8(value);
+                else if (type === 'euint16') input.add16(value);
+
+                return input.encrypt();
+            }
+        }
+
+        // Usage
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const client = new SimpleFHEVMClient(provider, signer, 11155111);
+        await client.initialize();
+
+        const encrypted = await client.encrypt(42, 'euint8', '0xYourContract');
+        console.log('Encrypted with SDK:', encrypted);
+    </script>
+</body>
+</html>
+```
+
+**See**: `index.html` and `examples/PetDNAMatching/index.html` for complete working examples.
 
 ### React Hooks
 
@@ -436,35 +512,119 @@ All React hooks have Vue 3 equivalents using the Composition API:
 
 demo1.mp4 demo2.mp4 demo3.mp4
 
-## 🎮 Next.js Example Application
+## 🎮 Examples
 
-The `examples/nextjs` directory contains a comprehensive demonstration of the FHEVM SDK integrated into a modern Next.js application.
+The project includes **comprehensive SDK integration examples** demonstrating usage across different frameworks and environments:
 
-### Features
+### 1. Next.js Example (React + SDK)
+
+**Location**: `examples/nextjs/`
+
+A complete Next.js 14 application showcasing full SDK integration with React hooks.
 
 **SDK Integration Components:**
 - **FHEProvider**: Context provider wrapping the application with FHEVM client
-- **EncryptionDemo**: Interactive encryption demonstration component
-- **ComputationDemo**: Homomorphic computation examples
-- **KeyManager**: Key initialization and management interface
+- **EncryptionDemo**: Interactive encryption demonstration using `useEncrypt` hook
+- **ComputationDemo**: Homomorphic computation examples with SDK
+- **KeyManager**: Key initialization and management using `useFHEVMContext`
 
 **Example Use Cases:**
-- **BankingExample**: Private balance and transfer encryption
-- **MedicalExample**: Confidential health data encryption
+- **BankingExample**: Private balance and transfer encryption with SDK hooks
+- **MedicalExample**: Confidential health data encryption with SDK
 
 **Technical Implementation:**
 - **API Routes**: Server-side FHE operations (`/api/fhe/*`, `/api/keys`)
-- **React Hooks**: Client-side encryption with `useFHEVM`, `useEncrypt`, `useDecrypt`
-- **Type Safety**: Full TypeScript coverage with custom types
-- **Utility Libraries**: Security helpers, validation, and FHE client wrappers
+- **React Hooks**: Client-side encryption with `useFHEVM`, `useEncrypt`, `useDecrypt` from SDK
+- **Type Safety**: Full TypeScript coverage with SDK types
+- **Utility Libraries**: SDK core client wrappers and helpers
 
-### Running the Next.js Example
+**Running the Next.js Example:**
 
 ```bash
 cd examples/nextjs
 npm install
 npm run dev
 # Open http://localhost:3000
+```
+
+### 2. React Pet DNA Matching Example (React + Vite + SDK)
+
+**Location**: `examples/PetDNAMatchingReact/`
+
+A modern React application built with Vite showcasing the Pet DNA Matching system with full FHEVM SDK integration.
+
+**SDK Integration:**
+- **SimpleFHEVMClient**: Core SDK client wrapper class
+- **useWallet Hook**: Custom hook managing wallet connection and SDK initialization
+- **Component Architecture**: Modular React components for registration, pet management, and matching
+
+**Key Features:**
+- ✅ Modern React 18 with Hooks
+- ✅ Vite for fast development and building
+- ✅ Full SDK integration for encryption operations
+- ✅ Pet registration with encrypted genetic data
+- ✅ Pet management and breeding status control
+- ✅ Privacy-preserving compatibility matching
+- ✅ Contract information display
+
+**Technical Implementation:**
+- **Custom Hooks**: `useWallet` for wallet and SDK management
+- **React Components**: `WalletConnection`, `PetRegistration`, `MyPets`, `MatchingService`, `ContractInfo`
+- **SDK Encryption**: Automatic encryption of genetic markers, health scores, and temperament data
+- **Type Safety**: JavaScript with SDK utilities
+
+**Running the React Example:**
+
+```bash
+cd examples/PetDNAMatchingReact
+npm install
+npm run dev
+# Open http://localhost:3001
+```
+
+### 3. Vanilla JavaScript Example (HTML + SDK)
+
+**Locations**:
+- `index.html` (root)
+- `examples/PetDNAMatching/index.html`
+
+Standalone HTML applications demonstrating SDK usage **without build tools or frameworks**.
+
+**SDK Integration:**
+- **SimpleFHEVMClient**: Lightweight SDK wrapper class mirroring `packages/fhevm-sdk/src/core/FHEVMClient.ts`
+- **Direct Encryption**: Uses SDK for encrypting sensitive pet genetic data
+- **Browser-Compatible**: Works in any modern browser with MetaMask
+
+**Key Features:**
+- ✅ SDK initialization on wallet connect
+- ✅ Encrypted pet registration using SDK's `encrypt()` method
+- ✅ Real-time status updates showing SDK operations
+- ✅ Fallback handling if SDK initialization fails
+
+**Running the Vanilla JS Example:**
+
+```bash
+# Serve from root directory
+npx http-server . -p 8080
+# Open http://localhost:8080
+
+# Or serve PetDNAMatching example
+cd examples/PetDNAMatching
+npx http-server . -p 8080
+# Open http://localhost:8080
+```
+
+**SDK Usage Pattern:**
+```javascript
+// Initialize SDK client
+const fhevmClient = new SimpleFHEVMClient(provider, signer, 11155111);
+await fhevmClient.initialize();
+
+// Encrypt data with SDK
+const encrypted = await fhevmClient.encrypt(value, 'euint8', contractAddress);
+
+// Use encrypted data in contract calls
+await contract.registerPet(...params, encrypted.handles[0]);
 ```
 
 ### Live Demo
@@ -515,7 +675,7 @@ Try the live demo at: **[https://franciscowatsica.github.io/FHEPetDNAMatching/](
 - **Vue Composables**: 350+ lines
 - **Smart Contract**: 379 lines
 - **Documentation**: 2,000+ lines
-- **Examples**: 500+ lines
+- **Examples**: 1,200+ lines (Next.js, React+Vite, Vanilla JS)
 
 ### Features
 
@@ -533,10 +693,12 @@ Try the live demo at: **[https://franciscowatsica.github.io/FHEPetDNAMatching/](
 ### 1. True Framework Agnosticism
 
 Unlike other solutions that are tied to a single framework, this SDK works everywhere:
-- Backend services (Node.js)
-- React applications
-- Vue applications
-- Vanilla JavaScript/HTML
+- ✅ Backend services (Node.js)
+- ✅ React applications (demonstrated in `examples/nextjs/` and `examples/PetDNAMatchingReact/`)
+- ✅ Vue applications (composables ready)
+- ✅ Vanilla JavaScript/HTML (demonstrated in `index.html` and `examples/PetDNAMatching/`)
+
+**ALL examples in this repository use the SDK** - from Next.js with React hooks to standalone React with Vite to pure HTML!
 
 ### 2. Wagmi-Like Developer Experience
 
